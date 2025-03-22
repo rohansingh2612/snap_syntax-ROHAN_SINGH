@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 200vh; /* To enable scrolling */
+    font-family: Arial, sans-serif;
+    transition: background-color 0.5s ease;
+    counter-reset: ratio calc(var(--vw) / var(--vh) * 100);
+    padding-top: 4rem; /* To prevent content overlap with navbar */
+}
+
+body::before {
+    content: counter(ratio, decimal);
+    display: none;
+}
+
+body[data-ratio]::after {
+    content: attr(data-ratio);
+}
+
+.center-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 2rem;
+    color: white;
+}
+
+@media (max-aspect-ratio: 1/1) {
+    .center-content {
+        font-size: 1.5rem;
+    }
+}
+
+@media (min-aspect-ratio: 1/1) {
+    .center-content {
+        font-size: 2.5rem;
+    }
+}
+
+/* Change background color based on scroll */
+body.scrolled {
+    background-color: #3498db;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-left {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-center {
+    display: flex;
+    gap: 1rem;
+    font-size: 1rem;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.nav-center .name {
+    font-weight: bold;
+}
+
+.nav-center .designation {
+    font-style: italic;
+}
