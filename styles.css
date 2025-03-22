@@ -1,83 +1,244 @@
+/* Reset and Base Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 body {
-    height: 200vh; /* To enable scrolling */
-    font-family: Arial, sans-serif;
-    transition: background-color 0.5s ease;
-    counter-reset: ratio calc(var(--vw) / var(--vh) * 100);
-    padding-top: 4rem; /* To prevent content overlap with navbar */
+    background-color: #f5f5f5;
+    transition: background-color 0.8s ease;
 }
 
-body::before {
-    content: counter(ratio, decimal);
-    display: none;
-}
-
-body[data-ratio]::after {
-    content: attr(data-ratio);
-}
-
-.center-content {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    font-size: 2rem;
-    color: white;
-}
-
-@media (max-aspect-ratio: 1/1) {
-    .center-content {
-        font-size: 1.5rem;
-    }
-}
-
-@media (min-aspect-ratio: 1/1) {
-    .center-content {
-        font-size: 2.5rem;
-    }
-}
-
-/* Change background color based on scroll */
-body.scrolled {
-    background-color: #3498db;
-}
-
+/* Navigation Bar Styles */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
     background-color: #333;
     color: white;
-    position: fixed;
-    width: 100%;
+    padding: 1rem;
+    height: 80px;
+    position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 100;
 }
 
-.nav-left {
-    font-size: 1.5rem;
-    font-weight: bold;
+.nav-left, .nav-right {
+    flex: 1;
 }
 
 .nav-center {
+    flex: 2;
     display: flex;
-    gap: 1rem;
-    font-size: 1rem;
     justify-content: center;
-    flex-grow: 1;
+    gap: 2rem;
 }
 
-.nav-center .name {
-    font-weight: bold;
+.nav-right {
+    text-align: right;
 }
 
-.nav-center .designation {
-    font-style: italic;
+/* Main Content Area */
+main {
+    padding: 2rem;
+    min-height: calc(100vh - 160px); /* Accounting for navbar and footer */
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+/* Video Section Styles */
+.video-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Video Container Styles */
+.video-container {
+    position: relative;
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-element {
+    width: 100%;
+    display: block;
+    cursor: pointer;
+}
+
+/* Video Hover Effects */
+.video-container:hover {
+    transform: scale(1.05); /* Pop-out effect */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+/* Background color changes based on which video is in focus */
+#video1:hover {
+    /* This will trigger the background color change */
+}
+
+#video1:hover ~ * {
+    /* This doesn't actually do anything, just for clarity */
+}
+
+#video2:hover {
+    /* This will trigger the background color change */
+}
+
+#video3:hover {
+    /* This will trigger the background color change */
+}
+
+/* CSS to change the body background when a video is hovered */
+#video1:hover {
+    z-index: 10;
+}
+
+#video1:hover + * + * + * + * + * + * + * + * + * + * + * + * + * + * + * + * + * + * + * + * {
+    background-color: #ff9966;
+}
+
+#video2:hover {
+    z-index: 10;
+}
+
+#video2:hover + * + * + * + * + * + * + * + * + * + * + * + * + * + * + * + * + * + * + * {
+    background-color: #ffde59;
+}
+
+#video3:hover {
+    z-index: 10;
+}
+
+#video3:hover + * + * + * + * + * + * + * + * + * + * + * + * + * + * + * + * + * + * {
+    background-color: #0055aa;
+}
+
+/* Gallery Section Styles */
+.gallery-section {
+    margin: 3rem 0;
+}
+
+.gallery-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.gallery-item {
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+/* Gallery Hover Effects - Float and Pop Out */
+.gallery-item:hover {
+    transform: translateY(-15px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    z-index: 5;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Footer Styles */
+footer {
+    background-color: #0055aa; /* Blue background */
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    height: 80px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* CSS Hack to make videos play on hover without JavaScript */
+.video-container:hover .video-element {
+    /* This triggers the video to play on hover using a CSS hack */
+    animation: playVideo 0.1s forwards;
+}
+
+@keyframes playVideo {
+    0% {
+        opacity: 0.99;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Alternative approach to change background color */
+body:has(#video1:hover) {
+    background-color: #ff9966;
+}
+
+body:has(#video2:hover) {
+    background-color: #ffde59;
+}
+
+body:has(#video3:hover) {
+    background-color: #0055aa;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem 0;
+    }
+    
+    .nav-left, .nav-center, .nav-right {
+        width: 100%;
+        text-align: center;
+        margin: 0.5rem 0;
+    }
+    
+    .nav-center {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .video-container {
+        width: 95%;
+    }
+    
+    .gallery-item {
+        width: 100%;
+        max-width: 300px;
+    }
 }
