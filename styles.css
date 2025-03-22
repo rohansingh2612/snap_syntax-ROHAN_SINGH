@@ -74,6 +74,18 @@ main {
     cursor: pointer;
 }
 
+/* Enable video playback on hover without affecting z-index */
+.video-container .video-element {
+    pointer-events: none; /* Prevent interaction when not hovered */
+    opacity: 0.8; /* Slightly dim when not hovered */
+    transition: opacity 0.3s ease;
+}
+
+.video-container:hover .video-element {
+    pointer-events: auto; /* Enable interaction on hover */
+    opacity: 1; /* Fully visible on hover */
+}
+
 /* Video Hover Effects */
 .video-container:hover {
     transform: scale(1.05); /* Pop-out effect */
@@ -81,7 +93,7 @@ main {
     z-index: 10;
 }
 
-/* Background color changes based on which video is in focus */
+/* Backround color changes based on which video is in focus */
 #video1:hover {
     /* This will trigger the background color change */
 }
